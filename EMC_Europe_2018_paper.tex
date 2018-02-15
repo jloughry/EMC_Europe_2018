@@ -4,7 +4,9 @@
 % hours) or Email: Joe.Loughry@cs.du.edu or mailto:Joe.Loughry@gmail.com
 %
 
-\documentclass[10pt,a4paper]{article}
+\documentclass[conference]{IEEEtran}
+
+\usepackage{cite}
 
 \usepackage[english,british]{babel}
 \usepackage{graphicx}
@@ -12,11 +14,19 @@
 \newcommand{\URL}[1]{$\langle$\url{#1}$\rangle$}
 \usepackage[plainpages=false,pdfpagelabels]{hyperref}
 
+\hyphenation{op-tical net-works semi-conduc-tor}
+
 \begin{document}
 
 \title{\input{title.tex}}
 
-\author{Joe Loughry}
+\author{\IEEEauthorblockN{Joe Loughry}
+\IEEEauthorblockA{Ritchie School of Engineering and Computer Science \\
+University of Denver \\
+Denver, Colorado, USA \\
+Email: joe.loughry@cs.du.edu}
+\IEEEauthorblockA{and the Netoir company \URL{https://netoir.com}}
+}
 
 \maketitle
 
@@ -47,12 +57,19 @@ High Frequency Trading (HFT)
 \section{Design of a new product with optical \textsc{tempest} principles
 in mind}
 
+\section{Energy Gapping}
 
+Cite the `energy gap' principles from Clive Robinson.
+
+\section{Ethics}
+
+Cite Wilkins on disclosure and double-edged sword.
 
 \newpage
 
 Some more words go here. See Figure \ref{figure:whatever}.
 
+% Use [!t] for figures in IEEEtrans papers..
 \begin{figure}[!t]
     \centering
 	% 'trim' specifies how much to remove from left, bottom, right, and top
@@ -61,6 +78,17 @@ Some more words go here. See Figure \ref{figure:whatever}.
 	\caption{This is the caption.}
 	\label{figure:whatever}
 \end{figure}
+
+% See bare_conf.tex for example of a two-column subfigure in IEEEtrans, and
+% for the preferred table format.
+
+\section{Conclusion}
+
+IEEEtrans papers always have a Conclusion section.
+
+\section*{Acknowledgment}
+
+This is the acks.
 
 \section{Methodology}
 
@@ -82,8 +110,17 @@ Words\ldots
 
 More words\ldots
 
-\bibliographystyle{plain}
-\bibliography{consolidated_bibtex_file}
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{IEEEabrv,consolidated_bibtex_file}
 
 \end{document}
 

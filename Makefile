@@ -21,6 +21,7 @@ paper_dvi_file = $(paper_target).dvi
 slides_pdf_file = $(slides_target).pdf
 
 abstract = abstract.tex
+title = title.tex
 
 paper_sources = $(paper_source) $(bibtex_file) $(abstract)
 slides_sources = $(slides_source)
@@ -62,6 +63,9 @@ $(slides_pdf_file): $(slides_sources) $(graphics_for_slides) Makefile
 
 abstract:
 	$(editor) $(abstract)
+
+title:
+	$(editor) $(title)
 
 vi: paper
 

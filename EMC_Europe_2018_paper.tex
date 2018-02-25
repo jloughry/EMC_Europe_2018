@@ -10,10 +10,10 @@
 
 \usepackage[english,british]{babel}
 \usepackage{graphicx}
+\usepackage{siunitx}
 \usepackage[obeyspaces,hyphens]{url}
 \newcommand{\URL}[1]{$\langle$\url{#1}$\rangle$}
 \usepackage[plainpages=false,pdfpagelabels]{hyperref}
-\usepackage{comment}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -75,6 +75,27 @@ According to these hard-won principles.
 
 \subsection{Simple photoconductive photodiode design}
 
+The photodiode circuit is shown in Figure \ref{figure:photodiode_pullup}.
+The photodiode operates in reverse bias (photoconductive) mode for two
+reasons: speed, and simplicity of implementation. The same photodiode
+operated in photovoltaic mode would be more sensitive to very low level
+signals and have a lower dark current, but would require a transimpedance
+amplifier for current-to-voltage conversion, which would make the design
+more complicated and thereby more difficult to evaluate for security.
+
+% Use [!t] for figures in IEEEtrans papers..
+\begin{figure}[!t]
+    \centering
+	\includegraphics[height=2in]{graphics/photodiode_pullup_and_GPIO_protection.png}
+	\caption{The photodiode circuit is purposely made as simple as possible
+        for transparency of implementation; the \SI{10}{\kilo\ohm} pull-up
+        resistor for reliability and a \SI{100}{\ohm} series resistor to
+        protect the general-purpose IO (GPIO) pin from being shorted to
+        ground in case it were accidentally set to output a HIGH logic level
+        at the same time the photodiode was illuminated.}
+	\label{figure:photodiode_pullup}
+\end{figure}
+
 Risk of acoustic information leakage from acousto-optic modulator or MMD
 modulator. Cooling fan speed modulation acoustic information leakage risk.
 Light-tight design. RF, acoustic, vibration, temperature, ELF, power line
@@ -89,20 +110,8 @@ Cite the `energy gap' principles from Clive Robinson.
 
 Cite Wilkins on disclosure and double-edged sword.
 
-\begin{comment}
-% Use [!t] for figures in IEEEtrans papers..
-\begin{figure}[!t]
-    \centering
-	% 'trim' specifies how much to remove from left, bottom, right, and top
-	% edges of an A4 size PDF page.
-	\includegraphics[width=0.3\textwidth,trim=0 0 117mm 183mm,clip]{graphics/ox_brand_cmyk_pos.pdf}
-	\caption{This is the caption.}
-	\label{figure:whatever}
-\end{figure}
-
 % See bare_conf.tex for example of a two-column subfigure in IEEEtrans, and
 % for the preferred table format.
-\end{comment}
 
 \section{Conclusion}
 

@@ -13,6 +13,7 @@
 \usepackage[obeyspaces,hyphens]{url}
 \newcommand{\URL}[1]{$\langle$\url{#1}$\rangle$}
 \usepackage[plainpages=false,pdfpagelabels]{hyperref}
+\usepackage{comment}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -22,7 +23,7 @@
 
 \author{\IEEEauthorblockN{Joe Loughry}
 \IEEEauthorblockA{University of Denver \\
-Denver, Colorado 80??? USA \\
+Denver, Colorado 80208 USA \\
 Email: joe.loughry@cs.du.edu}
 \IEEEauthorblockA{and the Netoir company \URL{https://netoir.com}}
 }
@@ -38,11 +39,13 @@ Email: joe.loughry@cs.du.edu}
 Since the publication sixteen years ago of two papers on optical
 \textsc{tempest}, open sources on security of compromising emanations, and
 side channels in general, has exploded. Before 1996, only a handful of papers
-had been published on the subject [???], the most famous being van Eck on RF
-emanations from CRT displays [???]. But following Kocher's seminal paper
-on power analysis---not forgetting earlier but less scientific reports
-\cite{Wright1987} dating back a hundred years---two papers appeared within
-the same week on complementary aspects of optical emanations.
+had been published on the subject \cite{Smulders1990}, the most famous being
+van Eck on RF emanations from CRT displays \cite{vanEck1985}. But following
+Kocher's seminal 1996 paper on side channel attacks \cite{Kocher1996}---not
+to forget earlier but less scientific reports \cite{Wright1987} dating back
+a hundred years---two papers appeared within the same week on complementary
+aspects of optical emanations \cite{Kuhn2002,Loughry2002a}.
+
 
 Cited $n$ times.
 Simultaneous discovery with Markus Kuhn of Cambridge; NSA story (in a
@@ -86,10 +89,7 @@ Cite the `energy gap' principles from Clive Robinson.
 
 Cite Wilkins on disclosure and double-edged sword.
 
-\newpage
-
-Some more words go here. See Figure \ref{figure:whatever}.
-
+\begin{comment}
 % Use [!t] for figures in IEEEtrans papers..
 \begin{figure}[!t]
     \centering
@@ -102,6 +102,7 @@ Some more words go here. See Figure \ref{figure:whatever}.
 
 % See bare_conf.tex for example of a two-column subfigure in IEEEtrans, and
 % for the preferred table format.
+\end{comment}
 
 \section{Conclusion}
 

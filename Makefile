@@ -23,7 +23,7 @@ slides_pdf_file = $(slides_target).pdf
 abstract = abstract.tex
 title = title.tex
 
-paper_sources = $(paper_source) $(bibtex_file) $(abstract)
+paper_sources = $(paper_source) $(bibtex_file) $(abstract) $(title)
 slides_sources = $(slides_source)
 graphics_dir = ./graphics
 

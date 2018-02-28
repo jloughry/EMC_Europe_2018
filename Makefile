@@ -82,6 +82,7 @@ spell::
 
 wc:
 	wc -w $(abstract)
+	detex < $(paper_source) | wc -w
 
 clean::
 	rm -vf $(temporary_files)

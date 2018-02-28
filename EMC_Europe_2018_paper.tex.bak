@@ -53,9 +53,10 @@ war. But following Kocher's seminal 1996 paper on side channel attacks
 \cite{Kocher1996} and Kuhn \& Anderson \cite{Kuhn1998a} showing that covert
 channels were not limited by the system boundary, two papers appeared within
 a week of each other on complementary aspects of optical emanations
-\cite{Kuhn2002,Loughry2002a}.
+\cite{Kuhn2002,Loughry2002a}. Since then, the two papers, between them, have
+been cited more than 300 times.
 
-\section{Stories that were never told before}
+\section{Stories never told before}
 
 Optical TEMPEST was discovered at a bank. In the raised-floor computer room
 on the sixth level of a glass high-rise building in downtown Seattle,
@@ -74,7 +75,7 @@ was probably not an acronym).
 
 \subsection{Missed opportunities}
 
-Around this time, I made a serious mistake. Unbeknownst to me, Markus Kuhn, a
+Around this time, I made a serious mistake. Unbeknown to me, Markus Kuhn, a
 postgraduate student at Cambridge, was working along similar lines. I had
 thought of optical emanations from video display screens but dismissed the
 idea as physically impossible---without ever testing it. I thought the decay
@@ -99,96 +100,96 @@ missed.\footnote{Speaking of video signals, laser printers intensity-modulate
 an infrared laser with a video signal, and some plastics are transparent to
 infrared light. It might be worthwhile to measure laser printers for
 information-bearing optical emanations outside visible wavelengths, as Kubiak
-has done for RF \cite{Kubiak2014,Kubiak2017,Kubiak2017b,Kubiak2017c}.}
+has done for RF \cite{Kubiak2014,Kubiak2017,Kubiak2017b,Kubiak2017c},
+Ula\c{s} {\it et al.}\ have done for conducted powerline emanations
+\cite{Ulas2016}, and Enev {\it et al.}\ have done for conducted powerline
+emanations from video displays \cite{Enev2011}.}
 
 \subsection{Delay of first publication}
 
-Why did we not publish in 1992?
+Why didn't we publish in 1994? Part of the reason was perfectionism; I wanted
+to be able to explain the phenomenon and make predictions, not only describe
+it. In addition, by that time I had left the bank and was working for a
+defence contractor on a classified project. I had a security clearance now,
+and a greatly expanded awareness of counterintelligence sources and methods.
 
-I was working for a defence contractor at the time on a classified project,
-and so, following procedures, we submitted the paper to NSA for approval to
+And so, following procedures, we submitted the paper to NSA for approval to
 publish. It took a year and a half to approve.\footnote{Actually, it didn't
 quite happen that way. Our paper was approved for publication very quickly,
 in only a few weeks; we submitted it to the 10th USENIX Security Symposium
-where it was immediately accepted. Later, NSA called us back, and in a panic,
-insisted we withdraw the paper from the conference. I had to apologise to the
-programme chair; it was terribly embarrassing, and the delay in publishing was
-two years.} Eventually, NSA wrote back and said, `approved for public
-release'. I wonder what they spent all that time doing.
+where it was immediately accepted. A few days later, NSA called us back, and
+in a panic, insisted we withdraw the paper from the conference. I had to
+apologise to the programme chair; it was terribly embarrassing, and the delay
+in publishing was two years.} Eventually, NSA wrote back and said, `approved
+for public release'. I wonder what they spent all that time doing.
 
-Considered narrowly outside the scope of optical TEMPEST, for the purpose of
-this paper, are line-of-sight attacks essentially reducing to direct or
-indirect imaging of the display
-\cite{Backes2008,Backes2009a,Xu2013a,Jenkins2013a}. This is somewhat unfair,
-as the original attack by Loughry \& Umphress required, for the most part,
-line-of-sight---except, as previously mentioned, in \S 8.2---but in the time
-domain, not space.
+\subsection{Roads not taken}
 
 Universal Serial Bus (USB) devices hadn't happened yet, but today they're
 ubiquitous. Later and informal investigation of some light-up USB cables---a
-fad that didn't last---turned up some evidence of Class II optical emanations
+fad that didn't last---turned up evidence of Class II optical emanations
 related to data passing through the USB cable, but evidence for Class III
 optical emanations was inconclusive.
 
+Considered narrowly outside the scope of optical TEMPEST, for the purpose of
+this paper, are line-of-sight attacks that essentially reduce to direct or
+indirect imaging of the display
+\cite{Backes2008,Balzarotti2008,Backes2009a,Raguram2011,Xu2013a,Jenkins2013a}.
+This is somewhat unfair, as the original attack by Loughry \& Umphress
+required, for the most part, line-of-sight---except, as previously mentioned,
+in \S 8.2---but in the time domain, not space. Optical TEMPEST is a time
+domain effect. Other remote attacks employing optical means, such as visual
+or interferometric measurement of keyboard or printer acoustic emanations
+\cite{Asonov2004,Zhuang2005,Berger2006,Backes2010}, or the highly novel
+reverse covert channel using a scanner \cite{Nassi2017a}, are outside the
+scope of this paper. Finally, induced optical emanations
+\cite{Sepetnitsky2014a,Guri2016b,Guri2017a,Guri2017b,Lopes2017a,Guri2017c,
+Zhou2017,Zhou2018a} and \cite[Appendix A]{Loughry2002a} are properly
+considered out-of-band covert channels
+\cite{Lampson1973,Hanspach2014,Carrara2016}, despite being compromising
+optical emanations in the time domain, because they are purposely induced by
+a nefarious software or hardware agent, or by activity controllable by a
+third party, introduced into the target system by the attacker.
+
 \section{MAC and PHY}
 
-We looked hard at the other two large populations of blinking LEDs in the
-world: disk activity lights and network interface cards. Neither source
-proved fruitful; we were unable to find any evidence of Class III optical
-emanations from storage devices or link activity indicators on Ethernet
-cards.\footnote{The one exception---and it was a bad one---was WAN interfaces
+We looked hard, at the time, at the other two large populations of blinking
+LEDs in the world: disk activity lights and Network Interface Cards (NICs).
+Neither source proved fruitful; we were unable to find any evidence of Class
+III optical emanations from storage devices or link activity indicators on
+Ethernet cards. The one exception---and it was a bad one---was WAN interfaces
 on the back panel of enterprise routers, devices which live in racks that
-sometimes back up to windows; see \cite[\S 4.3.1]{Loughry2002a}.} This is
-believed to be a consequence of the fact that the Ethernet protocol is well
-divided into two layers: MAC and PHY.
+sometimes back up to windows; see \cite[\S 4.3.1]{Loughry2002a}. Aside from
+those, the complete absence of compromising optical emanations from Ethernet
+link activity LEDs is believed to be a consequence of the fact that the
+Ethernet protocol is well divided into two layers: MAC and PHY.
 
-In the Ethernet protocol, the Media Access Control (MAC) layer marshals bits
-into frames and hands them off to the Physical (PHY) layer, which deals
-exclusively with voltages and waveforms and wires or fibre optics. Only a few
-suppliers make PHY chips and generally they do it right, providing dedicated
-pins on the PHY chip for connecting LEDs for status indication and internally
-stretching pulses to the LEDs to make high speed activity visible to humans.
-This contrasts with the past situation we found with relatively low-speed
-serial interfaces, where the temptation was overwhelming for circuit
-designers to drive LEDs directly from generously high voltage and high
-current serial communication signals---arguably providing reliable indication
-of signal quality and marginal signal levels at low cost.
+In the Ethernet protocol, the Media Access Control layer (MAC) marshals bits
+into frames and hands them off to the Physical layer (PHY), which deals
+exclusively with voltages and waveforms and wires, or radio, or fibre optics.
+In the case of twisted pair wire, only a few suppliers make PHY chips and
+generally they do it right, providing dedicated pins on the PHY chip for
+connecting LEDs for status indication and internally stretching pulses to the
+LEDs to make high speed activity visible to humans. The constrast with the
+situation we found regarding relatively low-speed serial interfaces is stark;
+there, the temptation was overwhelming for circuit designers to drive LEDs
+directly from generously high voltage and high current serial communication
+signals---arguably providing reliable indication of signal quality and
+marginal signal levels at very low cost.
 
 But see \S forward reference to HFT
 
 bespoke hardware for ultra-low-latency Ethernet
 
-USB
-
 HFT
-
-The two papers, between them, have been cited more than 300 times.
-
-Simultaneous discovery with Markus Kuhn of Cambridge; NSA story (in a
-footnote), LCD monitors.
 
 Optical TEMPEST began in a bank, developed in counterintelligence,
 and now circles back to fintech. FPGA for latency \cite{Hurd2018a}.
-
-I was working for a defence contractor at the time on a classified project,
-and so, following procedures, we submitted the paper to NSA for approval to
-publish. It took a year and a half to approve.\footnote{Actually, it didn't
-quite happen that way. Our paper was approved for publication very quickly,
-in only a few weeks; we submitted it to the 10th USENIX Security Symposium
-where it was immediately accepted. Later, NSA called us back, and in a panic,
-insisted we withdraw the paper from the conference. I had to apologise to the
-programme chair; it was terribly embarrassing, and the delay in publishing was
-two years.} Eventually, NSA wrote back and said, `approved for public
-release'. I wonder what they spent all that time doing.
 
 The first part of this paper is a survey of further work done by others since
 the publication of \cite{Loughry2002a} in 2002. This is followed by a
 description of the design process for a new product according to these
 principles.
-
-\section{USB}
-
-Universal Serial Bus (USB) devices
 
 \section{PHY chips}
 

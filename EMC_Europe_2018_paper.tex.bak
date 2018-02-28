@@ -10,7 +10,7 @@
 
 \usepackage[english,british]{babel}
 \usepackage{graphicx}
-\usepackage{siunitx}
+\usepackage[binary-units]{siunitx}
 \usepackage[obeyspaces,hyphens]{url}
 \newcommand{\URL}[1]{$\langle$\url{#1}$\rangle$}
 \usepackage[plainpages=false,pdfpagelabels]{hyperref}
@@ -22,11 +22,9 @@
 \title{\input{title.tex}}
 
 \author{\IEEEauthorblockN{Joe Loughry}
-\IEEEauthorblockA{University of Denver \\
+\IEEEauthorblockA{University of Denver, Department of Computer Science \\
 Denver, Colorado 80208 USA \\
-Email: joe.loughry@cs.du.edu}
-\IEEEauthorblockA{and the Netoir company \URL{https://netoir.com}}
-}
+Email: joe.loughry@cs.du.edu}}
 
 \maketitle
 
@@ -36,20 +34,76 @@ Email: joe.loughry@cs.du.edu}
 
 \section{Introduction}
 
-Since the publication sixteen years ago of two papers on optical
-\textsc{tempest}, open sources on security of compromising emanations, and
-side channels in general, has exploded. Before 1996, only a handful of papers
-had been published on the subject \cite{Smulders1990}, the most famous being
-van Eck on RF emanations from CRT displays \cite{vanEck1985}. But following
-Kocher's seminal 1996 paper on side channel attacks \cite{Kocher1996}---not
-to forget earlier but less scientific reports \cite{Wright1987} dating back
-a hundred years---two papers appeared within the same week on complementary
-aspects of optical emanations \cite{Kuhn2002,Loughry2002a}.
+Since the publication sixteen years ago of the first two papers on optical
+TEMPEST, open source information on security of compromising emanations---and
+side channels in general---has exploded. Before the late 1990s, only a
+handful of papers had been published in the open literature on the subject of
+TEMPEST\footnote{TEMPEST, here, is the U.S.\ National Security Agency (NSA)
+code name for `the problem compromising radiation'---radio frequency (RF)
+\emph{or} acoustic, according to the original reference, which was only
+declassified in 2007---including both exploitation and control
+\cite{NSATempest2007}. Beyond the 1972 definition of TEMPEST, military and
+academic researchers have expanded the spectrum to include DC, optical,
+thermal, magnetic, and acceleration side channels.} and the topic was mostly
+relegated to the folklore of infosec; the only two scientific studies of
+unintentional compromising emanations remained van Eck \cite{vanEck1985} and
+Smulders \cite{Smulders1990} although Wright's book around the same time
+\cite{Wright1987} described anecdotal reports dating back to the first world
+war. But following Kocher's seminal 1996 paper on side channel attacks
+\cite{Kocher1996} and Kuhn \& Anderson \cite{Kuhn1998a} showing that covert
+channels were not limited by the system boundary, two papers appeared within
+a week of each other on complementary aspects of optical emanations
+\cite{Kuhn2002,Loughry2002a}.
 
+\section{Stories that were never told before}
 
-Cited $n$ times.
-Simultaneous discovery with Markus Kuhn of Cambridge; NSA story (in a
-footnote), LCD monitors.
+Optical TEMPEST was discovered at a bank. In the raised-floor computer room
+on the sixth level of a glass high-rise building in downtown Seattle,
+surrounded by other glass high-rises with their own computer rooms visible at
+night by the reddish glow of LED indicators, I was working late. Dial-up
+modems had not yet gone completely extinct, \SI{10}{\mega\bit\per\second}
+Ethernet was increasingly common on PCs, and leased lines ran everywhere from
+the computer room to branch offices, thousands of them. This was the
+environment where optical TEMPEST was discovered in 1992. Cautious
+experiments were performed, a literature survey was quietly done to see if
+anyone had ever noticed it before, and the National Computer Security Center
+(NCSC) was asked if they knew of it. All inquiries ran into a classified
+information roadblock; just about all that was known at the time, in the open
+literature, was that nearly everything about TEMPEST was classified (but it
+was probably not an acronym).
+
+\subsection{Missed opportunities}
+
+Around this time, I made a serious mistake. Unbeknownst to me, Markus Kuhn, a
+postgraduate student at Cambridge, was working along similar lines. I had
+thought of optical emanations from video display screens but dismissed the
+idea as physically impossible---without ever testing it. I thought the decay
+time of Cathode Ray Tube (CRT) phosphors was too slow to carry information
+about the video signal in the diffuse light available to non-line-of-sight
+interception, and consequently, I never looked.
+
+Markus Kuhn found and successfully exploited a tiny ripple near the peak of
+the response curve of video display phosphors. The gross shape of the curve
+belies the fact that that tiny ripple is detectable in the time domain
+optical signal, if your detector is fast enough.
+
+Kuhn's detector---a photomultiplier tube---was better than mine; the
+gain--bandwidth product is better than that of the large-area
+photodiode/transimpedance amplifier combination I used, but we were looking
+for different things: Kuhn for diffuse emanations from an entire screen, and
+I for line-of-sight photons from a particular LED (although we did eventually
+figure out how to separate multiple superimposed signals from diffuse optical
+emanations collected by non-line-of-sight means). The difference is that
+Markus Kuhn actually looked, and he found an effect I
+missed.\footnote{Speaking of video signals, laser printers intensity-modulate
+an infrared laser with a video signal, and some plastics are transparent to
+infrared light. It might be worthwhile to measure laser printers for
+information-bearing optical emanations outside visible wavelengths, as Kubiak
+has done for RF \cite{Kubiak2014,Kubiak2017,Kubiak2017b,Kubiak2017c}.}
+
+\subsection{Delay of first publication}
+
+Why did we not publish in 1992?
 
 I was working for a defence contractor at the time on a classified project,
 and so, following procedures, we submitted the paper to NSA for approval to
@@ -58,7 +112,72 @@ quite happen that way. Our paper was approved for publication very quickly,
 in only a few weeks; we submitted it to the 10th USENIX Security Symposium
 where it was immediately accepted. Later, NSA called us back, and in a panic,
 insisted we withdraw the paper from the conference. I had to apologise to the
-programme chair; it was terribly embarassing, and the delay in publishing was
+programme chair; it was terribly embarrassing, and the delay in publishing was
+two years.} Eventually, NSA wrote back and said, `approved for public
+release'. I wonder what they spent all that time doing.
+
+Considered narrowly outside the scope of optical TEMPEST, for the purpose of
+this paper, are line-of-sight attacks essentially reducing to direct or
+indirect imaging of the display
+\cite{Backes2008,Backes2009a,Xu2013a,Jenkins2013a}. This is somewhat unfair,
+as the original attack by Loughry \& Umphress required, for the most part,
+line-of-sight---except, as previously mentioned, in \S 8.2---but in the time
+domain, not space.
+
+Universal Serial Bus (USB) devices hadn't happened yet, but today they're
+ubiquitous. Later and informal investigation of some light-up USB cables---a
+fad that didn't last---turned up some evidence of Class II optical emanations
+related to data passing through the USB cable, but evidence for Class III
+optical emanations was inconclusive.
+
+\section{MAC and PHY}
+
+We looked hard at the other two large populations of blinking LEDs in the
+world: disk activity lights and network interface cards. Neither source
+proved fruitful; we were unable to find any evidence of Class III optical
+emanations from storage devices or link activity indicators on Ethernet
+cards.\footnote{The one exception---and it was a bad one---was WAN interfaces
+on the back panel of enterprise routers, devices which live in racks that
+sometimes back up to windows; see \cite[\S 4.3.1]{Loughry2002a}.} This is
+believed to be a consequence of the fact that the Ethernet protocol is well
+divided into two layers: MAC and PHY.
+
+In the Ethernet protocol, the Media Access Control (MAC) layer marshals bits
+into frames and hands them off to the Physical (PHY) layer, which deals
+exclusively with voltages and waveforms and wires or fibre optics. Only a few
+suppliers make PHY chips and generally they do it right, providing dedicated
+pins on the PHY chip for connecting LEDs for status indication and internally
+stretching pulses to the LEDs to make high speed activity visible to humans.
+This contrasts with the past situation we found with relatively low-speed
+serial interfaces, where the temptation was overwhelming for circuit
+designers to drive LEDs directly from generously high voltage and high
+current serial communication signals---arguably providing reliable indication
+of signal quality and marginal signal levels at low cost.
+
+But see \S forward reference to HFT
+
+bespoke hardware for ultra-low-latency Ethernet
+
+USB
+
+HFT
+
+The two papers, between them, have been cited more than 300 times.
+
+Simultaneous discovery with Markus Kuhn of Cambridge; NSA story (in a
+footnote), LCD monitors.
+
+Optical TEMPEST began in a bank, developed in counterintelligence,
+and now circles back to fintech. FPGA for latency \cite{Hurd2018a}.
+
+I was working for a defence contractor at the time on a classified project,
+and so, following procedures, we submitted the paper to NSA for approval to
+publish. It took a year and a half to approve.\footnote{Actually, it didn't
+quite happen that way. Our paper was approved for publication very quickly,
+in only a few weeks; we submitted it to the 10th USENIX Security Symposium
+where it was immediately accepted. Later, NSA called us back, and in a panic,
+insisted we withdraw the paper from the conference. I had to apologise to the
+programme chair; it was terribly embarrassing, and the delay in publishing was
 two years.} Eventually, NSA wrote back and said, `approved for public
 release'. I wonder what they spent all that time doing.
 
@@ -79,7 +198,7 @@ pulse stretchers (references)
 
 High Frequency Trading (HFT)
 
-\section{Design of a new product with optical \textsc{tempest} principles
+\section{Design of a new product with optical TEMPEST principles
 in mind}
 
 According to these hard-won principles.
@@ -117,6 +236,9 @@ list.
 
 Cite the `energy gap' principles from Clive Robinson.
 
+Conductive tape on the seams and for isolation between high side and low side
+inside.
+
 \section{Ethics}
 
 Cite Wilkins on disclosure and double-edged sword.
@@ -133,8 +255,6 @@ IEEEtrans papers always have a Conclusion section.
 This is the acks.
 
 \section{Methodology}
-
-This is a reference \cite{Loughry2013a}.
 
 \section{Results}
 

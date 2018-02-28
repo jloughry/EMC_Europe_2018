@@ -177,7 +177,7 @@ directly from generously high voltage and high current serial communication
 signals---arguably providing reliable indication of signal quality and
 marginal signal levels at very low cost.
 
-But see \S forward reference to HFT
+But see \S forward reference to High Frequency Trading (HFT)
 
 bespoke hardware for ultra-low-latency Ethernet
 
@@ -190,14 +190,6 @@ The first part of this paper is a survey of further work done by others since
 the publication of \cite{Loughry2002a} in 2002. This is followed by a
 description of the design process for a new product according to these
 principles.
-
-\section{PHY chips}
-
-pulse stretchers (references)
-
-\section{HFT}
-
-High Frequency Trading (HFT)
 
 \section{Design of a new product with optical TEMPEST principles
 in mind}
@@ -227,11 +219,17 @@ more complicated and thereby more difficult to evaluate for security.
 	\label{figure:photodiode_pullup}
 \end{figure}
 
+% See bare_conf.tex for example of a two-column subfigure in IEEEtrans, and
+% for the preferred table format.
+
 Risk of acoustic information leakage from acousto-optic modulator or MMD
 modulator. Cooling fan speed modulation acoustic information leakage risk.
 Light-tight design. RF, acoustic, vibration, temperature, ELF, power line
 conducted emissions: see lit.\ survey in recent papers for a comprehensive
 list.
+
+To be honest, I have reservations about the lack of galvanic isolation
+through the metal of this component.
 
 \section{Energy Gapping}
 
@@ -240,38 +238,19 @@ Cite the `energy gap' principles from Clive Robinson.
 Conductive tape on the seams and for isolation between high side and low side
 inside.
 
-\section{Ethics}
-
-Cite Wilkins on disclosure and double-edged sword.
-
-% See bare_conf.tex for example of a two-column subfigure in IEEEtrans, and
-% for the preferred table format.
-
 \section{Conclusion}
 
-IEEEtrans papers always have a Conclusion section.
+Since the publication in 2002 of the first peer-reviewed research on
+compromising optical emanations, other researchers have carried it further.
+But technological progress has shifted the boundaries of what was possible,
+necessitating re-visit of the same vulnerabilities from time to time. This is
+a general principle of security; vulnerabilities, once fixed, sometimes do
+not stay fixed.
 
-\section*{Acknowledgment}
+\section*{Acknowledgments}
 
-This is the acks.
-
-\section{Methodology}
-
-\section{Results}
-
-Words\ldots
-
-\section{Interpretation}
-
-Words\ldots
-
-\section{Summary and Conclusion}
-
-Words\ldots
-
-\section{Acknowledgements}
-
-More words\ldots
+Thanks to many anonymous and pseudonymous commenters on Hacker News
+\URL{news.ycombinator.com} for helping me develop the ideas in this paper.
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page

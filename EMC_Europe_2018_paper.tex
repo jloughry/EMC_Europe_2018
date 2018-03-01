@@ -251,12 +251,12 @@ was typically used before being replaced by something even faster
 The risk in this kind of cowboy engineering is that of Chesterton's fence;
 non-obvious safeguards may be dropped, leaving the implementation vulnerable
 to exploitation. While not described there ({\it ibid.}) it is not
-unreasonable to speculate that HFT engineers---there were many groups besides
-the ones in Korea---may have looked critically at the PHY in their search for
-another few microseconds to harvest. And developmental hardware, especially,
-sometimes needs monitoring or diagnostic LEDs for debugging. It is purely
-speculation, but there might be a `window' of opportunity for rival HFT firms
-with a telescope and very high speed photodetector to exploit any
+unreasonable to speculate that HFT engineers---there were many HFT groups
+besides the one in Korea---may have looked critically at the PHY in their
+search for another few microseconds to harvest. And developmental hardware,
+especially, sometimes needs monitoring or diagnostic LEDs for debugging. It
+is purely speculation, but there might be a `window' of opportunity for rival
+HFT firms with a telescope and very high speed photodetector to exploit any
 incautiously situated LED indicators connected directly to high-speed
 registers.
 
@@ -279,21 +279,33 @@ documentation.\footnote{The situation is little different in either
 commercial aviation or military and intelligence community systems for
 classified information: process maturity, formal or semi-formal design, and
 exhaustive testing before certification and approval for use.} As a result,
-perhaps millions of vulnerable medical devices---a few years old---exist that
-never have got the required security patches for their embedded computers'
-operating system (OS) as recommended by the OS manufacturer. In this
-section I describe some of the design considerations informed by experience
-with optical TEMPEST vulnerabilities and countermeasures. The notional
-infosec product described is intended to isolate vulnerable medical devices
-with the aim of protecting individuals' privacy by eliminating one mode of
-entry of hackers to the hospital's internal computer networks.
+perhaps millions of vulnerable medical devices---only a few years old---exist
+that never have got the required security patches for their embedded
+computers' operating system (OS) as recommended by the OS manufacturer. The
+reason for the shortfall in software maintenance is the excessive cost of FDA
+recertification in the event any diagnostic- or therapeutic-relevant changes
+are made to the configuration of a medical device \cite{Talbot2012}. In fact,
+the analogous situation happens in classified military and intelligence
+community networks as well. Commercial aviation experiences the problem less
+than either classified networks or healthcare for two reasons: firstly, being
+mobile, aviation control systems tend to be more isolated and special-purpose
+embedded computers than the Commercial Off-the-Shelf (COTS) hardware favoured
+by medical device and intelligence community developers; and secondly, DO-178
+\cite{DO-178C}.
+
+In this section I describe some of the design considerations for new
+development informed by experience with optical TEMPEST vulnerabilities and
+countermeasures. The notional infosec product described is intended to
+isolate vulnerable medical devices with the aim of protecting individuals'
+privacy by eliminating one mode of entry of hackers to the hospital's
+internal computer networks.
 
 In a parallel universe to the HFT hardware designers in the previous section,
 we use similar techniques to different ends; the MAC here is a state machine
-implemented in hardware not for low-latency but for high-security; the PHY
-returns---in the interest of complete transparency of implementation---to its
-roots in the magnetics of IEEE 802.3i, where the number of turns in a
-toroidal transformer can be counted, again for security. The design and
+implemented in hardware, not for low-latency but for high-security; the PHY
+returns, for security reasons---in the interest of complete transparency of
+implementation---to its roots in the magnetics of IEEE 802.3i, where the
+number of turns in a toroidal transformer can be counted. The design and
 development methodology is that of the intelligence community, but the
 anticipated buyer does not reside in the U.S., and is not expected
 particularly to trust the U.S.\ government. The only reasonable defence
@@ -328,15 +340,20 @@ implementation. The same photodiode operated in photovoltaic mode would be
 more sensitive to very low level signals and have a lower dark current, but
 would require a transimpedance amplifier for current-to-voltage conversion,
 which would make the design more complicated and thereby more difficult to
-evaluate for security.
+evaluate for security. The rest of the design is equally unconventional
+(Figure \ref{figure:deep_pipeline}). Rather than using available `IP' blocks
+(Intellectual Property---pre-designed software modules delivering standard
+functionality such as ARM cores or Ethernet MAC), we prefer a clean-room
+design approach built from IEEE 802.3 standards, avoiding closed-source IP.
+The result, we believe, in combination with open tests, will be considered
+trustworthy by everyone in the world.
 
 \subsection{Design discussion}
 
 Simplicity of implementation is paramount. There are no amplifiers, no MAC
 or PHY chips, no process nodes that cannot be de-capped and have a
 representative sample to be examined under a microscope. The development tool
-chain must be open source and international. The design is unconventional in
-the extreme (Figure \ref{figure:deep_pipeline}).
+chain must be open source and international.
 
 It must be acknowledged that optical TEMPEST, ironically, is a vulnerability
 that can be exacerbated by extreme reliance on simplicity of implementation.
@@ -390,14 +407,14 @@ not stay fixed.
 \section*{Acknowledgements}
 
 Thanks to many anonymous and pseudonymous commenters on Hacker News
-\URL{news.ycombinator.com} for helping me develop the ideas in this paper.
+\URL{news.ycombinator.com} for helping develop the ideas in this paper.
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
 
-\IEEEtriggeratref{35}
+\IEEEtriggeratref{33}
 
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}

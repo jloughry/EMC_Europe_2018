@@ -1,6 +1,6 @@
 # EMC Europe 2018
 
-Paper and slides for presentation at the EMC Europe 2013 conference.
+Paper and slides for presentation at the EMC Europe 2018 conference.
 
 ## Amsterdam, 37&ndash;30 August 2018
 

@@ -100,8 +100,8 @@ acronym).
 
 \subsection{What we found}
 
-Table of Class I, II, III compromising optical emanations. See the
-bare_conf.tex file for proper IEEE table format. Why LED indicators are
+Table of Class I, II, III compromising optical emanations. (See the
+bare\_conf.tex file for proper IEEE table format.) Why LED indicators are
 vulnerable. What sorts of devices. How bad was the problem?
 
 We named it `optical TEMPEST'.
@@ -359,13 +359,15 @@ implementation. The same photodiode operated in photovoltaic mode would be
 more sensitive to very low level signals and have a lower dark current, but
 would require a transimpedance amplifier for current-to-voltage conversion,
 which would make the design more complicated and thereby more difficult to
-evaluate for security. The rest of the design is equally unconventional
-(Figure \ref{figure:deep_pipeline}). Rather than using available `IP' blocks
+evaluate for security.
+
+The rest of the design is equally unconventional (Figure
+\ref{figure:deep_pipeline}). Rather than using available `IP' blocks
 (Intellectual Property---pre-designed software modules delivering standard
 functionality such as ARM cores or Ethernet MAC), we prefer a clean-room
-design approach built from IEEE 802.3 standards, avoiding closed-source IP.
-The result, we believe, in combination with open tests, will be considered
-trustworthy by everyone in the world.
+design approach built up from IEEE 802.3 standards using semi-formal methods,
+avoiding closed-source IP. The result, we believe, in combination with open
+tests, will be considered trustworthy by everyone in the world.
 
 \subsection{Design discussion}
 

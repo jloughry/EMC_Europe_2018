@@ -14,7 +14,6 @@
 \usepackage[obeyspaces,hyphens]{url}
 \newcommand{\URL}[1]{$\langle$\url{#1}$\rangle$}
 \usepackage[plainpages=false,pdfpagelabels]{hyperref}
-\usepackage{comment}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -118,7 +117,7 @@ laser printers intensity-modulate an infrared laser with a video signal, and
 some plastics are transparent to infrared light. It might be worthwhile to
 measure laser printers for information-bearing optical emanations outside
 visible wavelengths, as Kubiak has done for RF
-\cite{Kubiak2014,Kubiak2017,Kubiak2017b,Kubiak2017c}, Ula\c{s} {\it et al.}\
+\cite{Kubiak2014a,Kubiak2017b,Kubiak2017c,Kubiak2017d}, Ula\c{s} {\it et al.}\
 have done for conducted powerline emanations \cite{Ulas2016}, and Enev {\it
 et al.}\ have done for conducted powerline emanations from video displays
 \cite{Enev2011}.} in the diffuse light available to non-line-of-sight
@@ -369,6 +368,22 @@ design approach built up from IEEE 802.3 standards using semi-formal methods,
 avoiding closed-source IP. The result, we believe, in combination with open
 tests, will be considered trustworthy by everyone in the world.
 
+\subsection{Energy Gap}
+
+Risk of acoustic information leakage from acousto-optic modulator or MMD
+modulator. Cooling fan speed modulation acoustic information leakage risk.
+Light-tight design. RF, acoustic, vibration, temperature, ELF, power line
+conducted emissions: see lit.\ survey in recent papers for a comprehensive
+list.
+
+To be honest, I have reservations about the lack of galvanic isolation
+through the metal of this component.
+
+Cite the `energy gap' principles from Clive Robinson.
+
+Conductive tape on the seams and for isolation between high side and low side
+inside.
+
 \subsection{Design discussion}
 
 Simplicity of implementation is paramount. There are no amplifiers, no MAC
@@ -397,24 +412,6 @@ no vulnerabilities, and lasts forever.
         validation.}
 	\label{figure:deep_pipeline}
 \end{figure*}
-
-\begin{comment}
-Risk of acoustic information leakage from acousto-optic modulator or MMD
-modulator. Cooling fan speed modulation acoustic information leakage risk.
-Light-tight design. RF, acoustic, vibration, temperature, ELF, power line
-conducted emissions: see lit.\ survey in recent papers for a comprehensive
-list.
-
-To be honest, I have reservations about the lack of galvanic isolation
-through the metal of this component.
-
-\section{Energy Gapping}
-
-Cite the `energy gap' principles from Clive Robinson.
-
-Conductive tape on the seams and for isolation between high side and low side
-inside.
-\end{comment}
 
 \section{Conclusion}
 

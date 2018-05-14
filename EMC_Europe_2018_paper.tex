@@ -342,23 +342,28 @@ galvanic isolation, not infosec.
     \centering
 	\includegraphics[height=2in]{graphics/photodiode_pullup_and_GPIO_protection.png}
 	\caption{The photodiode circuit is purposely made as simple as possible
-        for transparency of implementation; the \SI{10}{\kilo\ohm} pull-up
-        resistor for reliability together with a \SI{100}{\ohm} series
-        resistor to protect a bidirectional driver (here represented by a
-        generic buffer) from being shorted to ground in case it were
-        accidentally set to output a HIGH logic level at the same time the
-        photodiode is illuminated.}
+        for complete transparency---the goal was not simplcity or parts
+        count--of implementation; the \SI{10}{\kilo\ohm} pull-up resistor is
+        for reliability together with a \SI{100}{\ohm} series resistor to
+        protect the bidirectional driver (here represented by a generic
+        buffer) from being shorted to ground in case it were accidentally set
+        to output a HIGH logic level at the same time the photodiode were
+        illuminated.}
 	\label{figure:photodiode_pullup}
 \end{figure}
 
-The receiver side of the circuit is shown in Figure
-\ref{figure:photodiode_pullup}. The photodiode operates in reverse bias
-(photoconductive) mode for two reasons: speed, and simplicity of
-implementation. The same photodiode operated in photovoltaic mode would be
-more sensitive to very low level signals and have a lower dark current, but
-would require a transimpedance amplifier for current-to-voltage conversion,
-which would make the design more complicated and thereby more difficult to
-evaluate for security.
+The receiver side of the optoisolator circuit is shown schematicallyt in
+Figure \ref{figure:photodiode_pullup}. The photodiode operates in reverse
+bias ({\it i.e.}, photoconductive) mode for two reasons: firstly, speed, and
+secondly, simplicity of implementation. The same photodiode operated in
+photovoltaic mode would be more sensitive to very low level signals and have
+a lower dark current, but would require a transimpedance amplifier for
+current-to-voltage conversion, which would make the design more complicated
+and thereby more difficult to evaluate for security. There is no amplifier
+stage because electronics are relatively more difficult to verify than optics
+(not shown are three additional layers of protection, implemented by passive
+and active optical, mechanical, and physical means to ensure that information
+flows only in one direction).
 
 The rest of the design is equally unconventional (Figure
 \ref{figure:deep_pipeline}). Rather than using available `IP' blocks

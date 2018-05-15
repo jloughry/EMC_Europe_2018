@@ -33,6 +33,9 @@ all:: $(paper_pdf_file) $(slides_pdf_file)
 
 Makefile: common.mk
 
+touch:
+	touch $(paper_source)
+
 common.mk:
 	ln -s ../Makefiles/common.mk
 

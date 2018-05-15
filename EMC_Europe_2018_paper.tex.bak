@@ -13,6 +13,7 @@
 \usepackage[binary-units]{siunitx}
 \usepackage[obeyspaces,hyphens]{url}
 \newcommand{\URL}[1]{$\langle$\url{#1}$\rangle$}
+\usepackage[plainpages=false,pdfpagelabels]{hyperref}
 
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -63,8 +64,8 @@ side channel attacks \cite{Kocher1996} and Kuhn \& Anderson \cite{Kuhn1998a}
 having shown---essentially by adding forward error correction to EMC---that
 covert channels were not limited by the system boundary, two papers appeared
 within a week of each other on complementary aspects of optical emanations
-\cite{Kuhn2002,Loughry2002a}. Since then, these two papers, between them,
-have been cited more than 300 times.
+\cite{Kuhn2002,Loughry2002a}. Since then, the two papers, between them, have
+been cited more than 300 times.
 
 \subsection{Organisation}
 
@@ -72,28 +73,23 @@ The first part of this paper is a brief review of the results in the first
 paper on optical TEMPEST and a critique of mistakes that were made by one
 of the first investigators of the phenomenon, in the methodology, model
 building, writing, and follow-up of the earliest research. This is followed
-by a survey of ways that later authors have repaired the damage. Finally, a
-cautionary
-tale of the danger of forgetting lessons learnt in security is rounded out by
-a description
-of some interesting aspects of the design of a new information security
-product with
+by a survey of ways that later authors have repaired the damage. A cautionary
+tale of forgetting lessons learnt in security is rounded out by a description
+of some aspects of the the design of a new information security product with
 these principles in mind.
 
 \section{The story I never told you before}
 
-Optical TEMPEST was discovered by one of the junior IT people in a bank. In
-the raised-floor
-computer room on the sixth floor of a high-rise glass building in downtown
-Seattle, surrounded by other glass high-rises---their own computer rooms
+Optical TEMPEST was discovered working at a bank. In the raised-floor
+computer room on the sixth level of a glass high-rise building in downtown
+Seattle, surrounded by other glass high-rises with their own computer rooms
 visible at night by the reddish glow of Light Emitting Diode (LED)
-indicators---I was working very late. Dial-up modems had not yet gone
+indicators, I was working very late. Dial-up modems had not yet gone
 completely extinct, \SI{10}{\mega\bit\per\second} Ethernet was increasingly
 common on PCs, and leased lines ran everywhere from the computer room to
-branch offices---thousands of them. This was the environment where optical
-TEMPEST was discovered in 1992. After a few nights of data gathering, I told
-my postgraduate professor at Seattle University, Dr David Umphress, about it.
-Cautious experiments were performed. A literature survey was
+branch offices, thousands of them. This was the environment where optical
+TEMPEST was discovered in 1992. I told my postgraduate professor at Seattle
+U.\ about it. Cautious experiments were performed. A literature survey was
 quietly done to see if anyone had ever noticed it before, and the National
 Computer Security Center (NCSC) was asked if they knew of it. All inquiries
 ran into a classified information roadblock; just about the only thing that
@@ -103,55 +99,17 @@ acronym).
 
 \subsection{What we found}
 
-Table \ref{table:optical_tempest_findings} summarises the relevant
-experimental findings from our 2002 paper \cite{Loughry2002a}. In brief, we
-found that Class III devices leaked all of the information processed by the
-device in the form of optical emanations, and more than a third of devices
-tested were of this type. LED status indicators are both inexpensive \&
-reliable---making them attractive to circuit designers---and fast enough to
-respond to high-speed digital signals, which is what makes them hazardous
-from an information security perspective. Visual indicators only need to be
-fast enough to communicate information to human eyes, but LEDs are much
-faster. From an attacker's perspective, the fact that an LED turning on and
-off at a rate exceeding about \SI{30}{\hertz} appears to human eyes to be lit
-steadily means that information can be transmitted right past observers, the
-way dogs can hear ultrasonic sounds inaudible to humans. This has both
-accidental and intentional infosec implications.
+Table of Class I, II, III compromising optical emanations. (See the
+bare\_conf.tex file for proper IEEE table format.) Why LED indicators are
+vulnerable. What sorts of devices. How bad was the problem?
 
-\begin{table}[!t]
-    % increase table row spacing, adjust to taste
-    \renewcommand{\arraystretch}{1.3}
-    % if using array.sty, it might be a good idea to tweak the value of
-    % \extrarowheight as needed to properly center the text within the cells
-    \caption{Summary of findings from the original optical TEMPEST research
-        paper of 2002 (adapted from \cite[Tables I and II]{Loughry2002a}).}
-    \label{table:optical_tempest_findings}
-    \centering
-    % Some packages, such as MDW tools, offer better commands for making tables
-    % than the plain LaTeX2e tabular which is used here.
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        Class & Correlated with & Risk & How many \\
-        \hline
-        I & State of the device & Low & 10 percent (4) \\
-        II & Activity Level & Medium & 54 percent (21) \\
-        III & Data (content) & High & 36 percent (14) \\
-        \hline
-    \end{tabular}
-\end{table}
-
-Class III optical emanations were measured almost entirely coming from data
-communication devices, ranging from low cost to very high cost equipment. For
-reasons described in the next section, Ethernet devices were mostly
-unaffected, though we looked hard to find any that might be. We named the
-effect `optical TEMPEST'.
+We named it `optical TEMPEST'.
 
 \subsection{Missed opportunities}
 
 Around this time, I made a serious mistake. Unbeknown to me, Markus Kuhn, a
-postgraduate student at Cambridge, was working along similar lines
-\cite{Kuhn2003}. I had
-thought about optical emanations from video display screens but dismissed the
+postgraduate student at Cambridge, was working along similar lines. I had
+thought of optical emanations from video display screens but dismissed the
 idea as physically impossible, without ever testing it. I was wrong. I
 thought the decay time of Cathode Ray Tube (CRT) phosphors was too slow to
 carry information about the video signal\footnote{Speaking of video signals,
@@ -171,13 +129,10 @@ fact that that tiny ripple is detectable in the time domain optical signal,
 if your detector is fast enough.
 
 Kuhn's detector---a photomultiplier tube---was better than mine; the
-gain--bandwidth product of a photomultiplier is superior to that of the
-large-area
+gain--bandwidth product is superior to that of the large-area
 photodiode/transimpedance amplifier combination I used, but we were looking
-for different things: Kuhn was looking for diffuse emanations from the entire
-screen at once, and
-I was looking for for line-of-sight photons from a particular LED on an
-isolated piece of
+for different things: Kuhn for diffuse emanations from an entire screen, and
+I for line-of-sight photons from a particular LED on an isolated piece of
 equipment (although we did eventually figure out how to separate multiple
 superimposed signals from diffuse optical emanations collected by
 non-line-of-sight means). The difference is that Markus Kuhn actually looked,
@@ -185,8 +140,7 @@ and he found an effect that I missed.
 
 \subsection{Delay of first publication}
 
-Why didn't we publish in the nineteen-nineties? Part of the reason was
-perfectionism; I wanted
+Why didn't we publish in 1994? Part of the reason was perfectionism; I wanted
 to be able to explain the phenomenon and make predictions, not only describe
 it. In addition, by that time I had left the bank and was working for a
 defence contractor on a classified project. I had a security clearance now,
@@ -216,8 +170,7 @@ indirect imaging of the display
 \cite{Backes2008,Balzarotti2008,Backes2009a,Raguram2011,Xu2013a,Jenkins2013a}.
 This is somewhat unfair, as the original attack by Loughry \& Umphress
 required, for the most part, line-of-sight access---except, as previously
-mentioned, in \S 8.2 of our original paper---but in the time domain, not
-space. Optical TEMPEST is
+mentioned, in \S 8.2---but in the time domain, not space. Optical TEMPEST is
 a time domain effect. Other remote attacks employing optical means, such as
 visual or interferometric measurement of keyboard or printer acoustic
 emanations \cite{Asonov2004,Zhuang2005,Berger2006,Backes2010}, or a highly
@@ -230,19 +183,15 @@ Zhou2017,Zhou2018a} and \cite[Appendix A]{Loughry2002a} are properly
 considered out-of-band covert channels
 \cite{Lampson1973,Hanspach2014,Carrara2016}, despite being compromising
 optical emanations in the time domain, because they are purposely induced by
-a nefarious software or hardware agent, or by activity that is controllable
-by a third party, introduced into the target system by the attacker. Control
-and remote sensing of magnetic fields, or instantaneous electrical power
-demand, similarly are a covert channel, not TEMPEST
-\cite{Guri2018b,Guri2018e}.
+a nefarious software or hardware agent, or by activity controllable by a
+third party, introduced into the target system by the attacker.
 
 \section{MAC and PHY}
 
 Of the potential optical signal sources available in a standard office
 computer (power light, hard disk activity indicator, keyboard LEDs, network
 interface link indicators, charging indicators on laptops, optical disc read
-head and activity indicators, scanners, motherboard LEDs, optical mouse, and,
-of course, the screen), we
+head and activity indicators, optical mouse, and, of course, the screen), we
 looked hard, at the time, at the other two large populations of blinking
 LEDs in the world: disk activity lights\footnote{Guri {\it et al.}\ finally
 made it work in 2017 by hovering a drone in the air outside the building
@@ -263,7 +212,7 @@ into frames and hands them off to the Physical layer (PHY), which deals
 exclusively with voltages and waveforms and wires, or radio, or fibre
 optics. The MAC talks to the PHY using a protocol called Media Independent
 Interface (MII)---GMII for gigabit Ethernet---over a pair of 4-bit-wide
-parallel channels (for sending and receiving) clocked at \SI{25}{\mega\hertz}
+parallel channels (send and receive) clocked at \SI{25}{\mega\hertz}
 \cite{TI2009a}.
 
 In the case of twisted pair wire, only a few suppliers make PHY chips and
@@ -319,7 +268,7 @@ was typically used before being replaced by something even faster
 
 The risk in this kind of cowboy engineering is that of Chesterton's fence;
 non-obvious safeguards may be dropped, leaving the implementation vulnerable
-to exploitation. While not described in that reference ({\it ibid.}) it is not
+to exploitation. While not described there ({\it ibid.}) it is not
 unreasonable to speculate that HFT engineers---there were many HFT groups
 besides the one in Korea---may have looked critically at the PHY in their
 search for another few microseconds to harvest. And developmental hardware,
@@ -362,11 +311,11 @@ embedded computers than the Commercial Off-the-Shelf (COTS) hardware favoured
 by medical device and intelligence community developers; and secondly, DO-178
 \cite{DO-178C}.
 
-In this section I describe some of the design considerations for new hardware
+In this section I describe some of the design considerations for new
 development informed by experience with optical TEMPEST vulnerabilities and
 countermeasures. The notional infosec product described is intended to
 isolate vulnerable medical devices with the aim of protecting individuals'
-privacy by eliminating a potential mode of entry of hackers to the hospital's
+privacy by eliminating one mode of entry of hackers to the hospital's
 internal computer networks.
 
 In a parallel universe to the HFT hardware designers in the previous section,
@@ -374,8 +323,8 @@ we use similar techniques to different ends; the MAC here is a state machine
 implemented in hardware, not for low-latency but for high-security; the PHY
 returns, for security reasons---in the interest of complete transparency of
 implementation---to its roots in the magnetics of IEEE 802.3i, where the
-number of turns in a toroidal transformer can be counted by hand. The design
-and development methodology is that of the intelligence community, but the
+number of turns in a toroidal transformer can be counted. The design and
+development methodology is that of the intelligence community, but the
 anticipated buyer does not reside in the U.S., and is not expected
 particularly to trust the U.S.\ government. The only reasonable defence
 against this level of mistrust is believed to be complete openness and
@@ -393,7 +342,7 @@ galvanic isolation, not infosec.
     \centering
 	\includegraphics[height=2in]{graphics/photodiode_pullup_and_GPIO_protection.png}
 	\caption{The photodiode circuit is purposely made as simple as possible
-        for complete transparency---the goal was not simplicity or parts
+        for complete transparency---the goal was not simplcity or parts
         count--of implementation; the \SI{10}{\kilo\ohm} pull-up resistor is
         for reliability together with a \SI{100}{\ohm} series resistor to
         protect the bidirectional driver (here represented by a generic
@@ -403,7 +352,7 @@ galvanic isolation, not infosec.
 	\label{figure:photodiode_pullup}
 \end{figure}
 
-The receiver side of the optoisolator circuit is shown schematically in
+The receiver side of the optoisolator circuit is shown schematicallyt in
 Figure \ref{figure:photodiode_pullup}. The photodiode operates in reverse
 bias ({\it i.e.}, photoconductive) mode for two reasons: firstly, speed, and
 secondly, simplicity of implementation. The same photodiode operated in
@@ -411,35 +360,34 @@ photovoltaic mode would be more sensitive to very low level signals and have
 a lower dark current, but would require a transimpedance amplifier for
 current-to-voltage conversion, which would make the design more complicated
 and thereby more difficult to evaluate for security. There is no amplifier
-stage because electronics are relatively more difficult to verify than
-optics. Not shown are three additional layers of protection, implemented by
-passive and active optical, mechanical, and physical means between emitter
-and detector to ensure that information flows only in one direction.
+stage because electronics are relatively more difficult to verify than optics
+(not shown are three additional layers of protection, implemented by passive
+and active optical, mechanical, and physical means to ensure that information
+flows only in one direction).
 
 The rest of the design is equally unconventional (Figure
 \ref{figure:deep_pipeline}). Rather than using available `IP' blocks
 (Intellectual Property---pre-designed software modules delivering standard
-functionality such as ARM cores or Ethernet MAC in a chip), we prefer a
-clean-room
+functionality such as ARM cores or Ethernet MAC), we prefer a clean-room
 design approach built up from IEEE 802.3 standards using semi-formal methods,
 avoiding closed-source IP. The result, we believe, in combination with open
 tests, will be considered trustworthy by everyone in the world.
 
 \subsection{Energy Gap}
 
-The gold standard of information isolation is the `air gap'---physically
-separating a system containing sensitive information from attackers. But as
-Clive Robinson and others have pointed out, in the era of wireless
-networking, air gapping is insufficient.\footnote{Of course, Stuxnet proved
-that air gaps can fail in other ways, because they must necessarily be
-bridged by sneakernet \cite{Kushner2013a,Langner2013a}.} He coined the term
-`energy gap' to include both physical communication channels---RF, acoustic,
-optical, thermal, magnetic, or acceleration---in addition to more analogical
-interpretations of `energy' such as the work factor required to break
-encryption. The design of our notional product puts principles of physics,
-not algorithms or mathematics, between the attacker and his target, in an
-attempt to widen the energy gap. Optical TEMPEST risks are sealed up in
-machined metal cavities; mechanical interlocks supplement logical ones.
+Risk of acoustic information leakage from acousto-optic modulator or MMD
+modulator. Cooling fan speed modulation acoustic information leakage risk.
+Light-tight design. RF, acoustic, vibration, temperature, ELF, power line
+conducted emissions: see lit.\ survey in recent papers for a comprehensive
+list.
+
+To be honest, I have reservations about the lack of galvanic isolation
+through the metal of this component.
+
+Cite the `energy gap' principles from Clive Robinson.
+
+Conductive tape on the seams and for isolation between high side and low side
+inside.
 
 \subsection{Design discussion}
 
@@ -449,9 +397,7 @@ representative sample to be examined under a microscope. The development tool
 chain must be open source and international.
 
 It must be acknowledged that optical TEMPEST, ironically, is a vulnerability
-that can be exacerbated by extreme reliance on simplicity of implementation,
-as happened with LED indicators on data communication equipment from about
-1968--1998.
+that can be exacerbated by extreme reliance on simplicity of implementation.
 But experience with optical TEMPEST and side channels has inspired so many
 other researchers to find and exploit diverse vulnerabilities, that the only
 remaining avenue of approach is to strike as many components as possible from
@@ -483,18 +429,15 @@ not stay fixed.
 
 \section*{Acknowledgements}
 
-Thanks to the anonymous reviewers of EMC Europe 2018 and to the many
-anonymous and pseudonymous members of the communities of Hacker News
-\URL{https://news.ycombinator.com} and Bruce Schneier's blog
-\URL{https://www.schneier.com/} for helping develop and critically examine
-many of the ideas in this paper.
+Thanks to many anonymous and pseudonymous commenters on Hacker News
+\URL{news.ycombinator.com} for helping develop the ideas in this paper.
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
 
-\IEEEtriggeratref{35}
+\IEEEtriggeratref{33}
 
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
